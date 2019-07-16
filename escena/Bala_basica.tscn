@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://escena/Bala_basica.gd" type="Script" id=1]
+[ext_resource path="res://sprite/proyectiles.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 3.49923, 3.64473 )
+
+[node name="cuerpoBala" type="KinematicBody2D" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+potencia = 7500
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 2 )
+vframes = 2
+hframes = 7
+frame = 3
+_sections_unfolded = [ "Animation" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+position = Vector2( -0.511547, 0.42629 )
+shape = SubResource( 1 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="." index="2"]
+
+position = Vector2( -0.593148, 0.532911 )
+scale = Vector2( 0.366609, 0.366609 )
+rect = Rect2( -10, -10, 20, 20 )
+
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+
+
